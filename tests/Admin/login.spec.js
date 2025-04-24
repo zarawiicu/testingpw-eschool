@@ -26,4 +26,5 @@ test('Login sebagai admin dan simpan sesi', async ({ page }) => {
   await page.context().storageState({ path: 'adminState.json' });
 
   console.log('✅ Session admin berhasil disimpan ke adminState.json');
+  
 });
