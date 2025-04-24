@@ -1,0 +1,44 @@
+{
+  "cookies": [
+    {
+      "name": "XSRF-TOKEN",
+      "value": "eyJpdiI6IkV0b21xRGwvRnBSaHNYNlVtbmpKNEE9PSIsInZhbHVlIjoiN0ljSXJmVHdTZzFUYUEycm1vcE1xSWdmRStXSWt0Nlh5NkFPZjR2TmhFNEFTMkRIWlNnbU1GRTdQMWFGdVd5R2MyOU1BeGtRVllHUUQ3VXNJTWJxSlVNZ29nUkV2S3FrTUlBM3Zmbys2M2N1UVExY0d0NWo0NHdsaDZtS2VQTHQiLCJtYWMiOiIxNGUyYWYxOWVlNWFhMTMzM2EzOTVhNGEwY2U4ZjIyMjI0ZDEwZGZmNDFmNmJlZmRhZDE4N2QzMmY4MjRmZThkIiwidGFnIjoiIn0%3D",
+      "domain": "esbeta.deanry.my.id",
+      "path": "/",
+      "expires": 1745490208.210909,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "eschool_software_manajemen_sekolah_session",
+      "value": "eyJpdiI6IkhWUUE3b2t1WmlUL3U4QWcvSnJyYXc9PSIsInZhbHVlIjoiWDhXVzdRNE5lNFVwdldJVGRnajZ4NlQ5dEQ0a3Rld04zak1JdXQvdmRUT0Z6d1NWOTllVC9oUGdKQlVranQzTjJHbzJtc09mOWhCa3hIWDF3RkI1dUpNTGovQzVhRDNnSDBHYnVEdlRDekZpQ1RPWXl4TTB0TlNOVEYxSHMybnciLCJtYWMiOiI1M2ExMWVkOTYwZmNiZGM3YTc5ZWNkMTc4ZjAzN2QzNGRlZTFkNjY1YWZhNDY3NTgwMjYyNmJlMjk0YWUyOWQ4IiwidGFnIjoiIn0%3D",
+      "domain": "esbeta.deanry.my.id",
+      "path": "/",
+      "expires": 1745490208.211081,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "http://esbeta.deanry.my.id",
+      "localStorage": [
+        {
+          "name": "phpdebugbar-height",
+          "value": "300"
+        }
+      ]
+    },
+    {
+      "origin": "https://esbeta.deanry.my.id",
+      "localStorage": [
+        {
+          "name": "phpdebugbar-height",
+          "value": "300"
+        }
+      ]
+    }
+  ]
+}
