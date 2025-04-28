@@ -36,7 +36,7 @@ test('Navigasi Dasbor Akademik', async ({ page }) => {
 
   // Kembali ke dasbor
   console.log('🔁 Kembali ke Dasbor Akademik...');
-  await page.getByRole('link', { name: ' Kurikulum ' }).click();
+  // await page.getByRole('link', { name: ' Kurikulum ' }).click();
   await page.getByRole('link', { name: 'Dasbor Akademik' }).click();
   await page.waitForLoadState('networkidle', { timeout: 60000 });
   await page.waitForTimeout(2000);
@@ -56,7 +56,7 @@ test('Navigasi Dasbor Akademik', async ({ page }) => {
 
   // Klik mata pelajaran
   console.log('📘 Klik Mata Pelajaran 53...');
-  await page.getByText('Mata Pelajaran 53', { exact: true }).click();
+  await page.locator('div:nth-child(3) > .card > .card-redirect > .d-flex').click();
   await page.waitForLoadState('networkidle', { timeout: 60000 });
   await page.waitForTimeout(1000);
 
