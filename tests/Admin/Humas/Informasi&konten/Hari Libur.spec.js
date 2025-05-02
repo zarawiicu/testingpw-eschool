@@ -8,7 +8,7 @@ test("Create Hari libur", async ({ page }) => {
   // membuka halaman Hari
   await page.goto("https://esbeta.deanry.my.id/holiday");
   await page.waitForLoadState("networkidle");
-  console.log("berhasil membuka halaman pemberitahuan");
+  console.log("berhasil membuka halaman hari libur");
 
   //   mengisi data form
 
@@ -72,8 +72,9 @@ test("Edit Hari Libur", async ({ page }) => {
   console.log("berhasil membuka halaman pemberitahuan");
 
   //  memilih data tabel
+  await page.locator('tr', { hasText: 'Minggu Libur' }).waitFor();
   await page
-    .getByRole("row", { name: "Minggu Libur" })
+    .locator("tr", { hasText: "Minggu Libur" })
     .locator("#dropdownMenuButton")
     .click();
   console.log("row tabel ditemukan");
@@ -84,5 +85,71 @@ test("Edit Hari Libur", async ({ page }) => {
   console.log("membuka edit panel");
 
   // mengubah isi form
-  await page.getByRole('textbox', { name: ''})
+  await page
+    .getByRole("dialog", { name: "Edit Hari Libur" })
+    .getByPlaceholder("Judul")
+    .click();
+  await page
+    .getByRole("dialog", { name: "Edit Hari Libur" })
+    .getByPlaceholder("Judul")
+    .fill("Kenapa Minggu Libur?");
+  console.log("mengubah judul");
+
+  await page
+    .getByRole("dialog", { name: "Edit Hari Libur" })
+    .getByPlaceholder("Keterangan")
+    .click();
+  await page
+    .getByRole("dialog", { name: "Edit Hari Libur" })
+    .getByPlaceholder("Keterangan")
+    .fill(
+      "Bangsa Romawi Kuno, yang pada masa itu menguasai banyak wilayah di Eropa, menetapkan hari Minggu sebagai hari istirahat dari aktivitas kerja. Mereka menganggap hari ini sebagai hari yang baik untuk beribadah."
+    );
+  console.log("berhasil mengubah judul & keterangan ");
+
+  // mengubah tanggal
+  //   logika date
+  const today = new Date();
+  const threeDaysLater = new Date();
+  threeDaysLater.setDate(today.getDate() + 3);
+
+  // klik tombol sumbit
+  await page
+    .getByRole("dialog", { name: "Edit Hari Libur" })
+    .locator('input[type="submit"]')
+    .click();
+  await page.waitForLoadState("networkidle");
+  console.log("Submit Berhasil");
+
+  await page.waitForTimeout(100);
+  await page.getByRole('dialog', { name: 'Success' }).getByRole('button', {name: 'OK' }).click();
+  await page.waitForTimeout(5000);
+
+  console.log("Tes selesai");
 });
+
+
+test('Hapus Hari Libur', async({page}) => {
+   // membuka halaman Hari
+   await page.goto("https://esbeta.deanry.my.id/holiday");
+   await page.waitForLoadState("networkidle");
+   console.log("berhasil membuka halaman pemberitahuan");
+ 
+   //  memilih data tabel
+   await page.locator('tr', { hasText: 'Kenapa Minggu Libur?' }).waitFor();
+   await page
+     .locator("tr", { hasText: "Kenapa Minggu Libur?" })
+     .locator("#dropdownMenuButton")
+     .click();
+   console.log("row tabel ditemukan");
+
+  //  klik hapus
+  await page.getByRole("link", { name: "hapus" }).click();
+  await page.waitForLoadState("networkidle");
+  console.log("menghapus data");
+
+  // konfirmasi modal
+  await page.getByRole("button", { name: /Yes, delete it|Ya, hapus/ }).click();
+  console.log("berhasil menghapus");
+  console.log("tes berhasil");
+})
