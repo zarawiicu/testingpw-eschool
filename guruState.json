@@ -2,20 +2,20 @@
   "cookies": [
     {
       "name": "XSRF-TOKEN",
-      "value": "eyJpdiI6IkV0b21xRGwvRnBSaHNYNlVtbmpKNEE9PSIsInZhbHVlIjoiN0ljSXJmVHdTZzFUYUEycm1vcE1xSWdmRStXSWt0Nlh5NkFPZjR2TmhFNEFTMkRIWlNnbU1GRTdQMWFGdVd5R2MyOU1BeGtRVllHUUQ3VXNJTWJxSlVNZ29nUkV2S3FrTUlBM3Zmbys2M2N1UVExY0d0NWo0NHdsaDZtS2VQTHQiLCJtYWMiOiIxNGUyYWYxOWVlNWFhMTMzM2EzOTVhNGEwY2U4ZjIyMjI0ZDEwZGZmNDFmNmJlZmRhZDE4N2QzMmY4MjRmZThkIiwidGFnIjoiIn0%3D",
+      "value": "eyJpdiI6Im5RZTE2SFduVTN6Z2NDLy8wb0htQnc9PSIsInZhbHVlIjoidUJaWC9DRlNQUVV4VG5ZRG9rbHZFYkJueW1UK1YrMmJKbzl0blB3c2FETzl1SmIzWjBWeUxvb3ViQmdzdWs2QW8yMzBacUR4aFJCMk5PWURkaS9oZ29vSXMyQ1R0QzErN2EzdWY3SXRmT0xBVlVZMktvOTR4Z25NOHhGcHFsdzAiLCJtYWMiOiI0MzMyODhkZWEwOTM5YTkzYjQ2YWRiNzQ3M2E2MDk0M2QyMDI3YjIxYzJlNmFhZWU1MDE0YzBhMWJkODhmNjZkIiwidGFnIjoiIn0%3D",
       "domain": "esbeta.deanry.my.id",
       "path": "/",
-      "expires": 1745490208.210909,
+      "expires": 1745914331.239221,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "eschool_software_manajemen_sekolah_session",
-      "value": "eyJpdiI6IkhWUUE3b2t1WmlUL3U4QWcvSnJyYXc9PSIsInZhbHVlIjoiWDhXVzdRNE5lNFVwdldJVGRnajZ4NlQ5dEQ0a3Rld04zak1JdXQvdmRUT0Z6d1NWOTllVC9oUGdKQlVranQzTjJHbzJtc09mOWhCa3hIWDF3RkI1dUpNTGovQzVhRDNnSDBHYnVEdlRDekZpQ1RPWXl4TTB0TlNOVEYxSHMybnciLCJtYWMiOiI1M2ExMWVkOTYwZmNiZGM3YTc5ZWNkMTc4ZjAzN2QzNGRlZTFkNjY1YWZhNDY3NTgwMjYyNmJlMjk0YWUyOWQ4IiwidGFnIjoiIn0%3D",
+      "value": "eyJpdiI6Ilh2bFgzYm5Sa2VnNHl2K1I0QUFyMFE9PSIsInZhbHVlIjoicEhjbXA5eWY3alhVVGdDK3dpZyszYmdqR2hiM0QrbXBjN1FlQUVXbDhVSDNJNFRQcENRVjcyY3ZXOW5XQ0ErYWdIZTk3ZnhFTFdTZHUyaGcwYXZ4T2xLeTdSTUhpZWNzV3lrdXlOdVd0aUdFVTZiWWliN3pRbXEvVlhmTFRxbE0iLCJtYWMiOiI0ZWM2MTY5OWY3YTA3Njg1YjU5YWU5YWY2ZTFlNTM5OTY0ZjVlZjA4MDA2MmRhZDM5ZmMyYmExMzYxODBkMGIwIiwidGFnIjoiIn0%3D",
       "domain": "esbeta.deanry.my.id",
       "path": "/",
-      "expires": 1745490208.211081,
+      "expires": 1745914331.239462,
       "httpOnly": true,
       "secure": false,
       "sameSite": "Lax"
