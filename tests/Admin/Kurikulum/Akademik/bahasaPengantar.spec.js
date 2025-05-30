@@ -28,8 +28,8 @@ test('CRUD Bahasa Pengantar', async ({ page }) => {
   await page.waitForTimeout(1000);
 
   console.log('➕ Menambahkan Bahasa Pengantar baru...');
-  await page.getByRole('textbox', { name: /Nama|name/ }).fill('JPN');
-  await page.getByRole('button', { name: /Simpan|submit/ }).click();
+  await page.getByRole('textbox', { name: /Nama|Name/ }).fill('JPN');
+  await page.getByRole('button', { name: /Simpan|Submit/ }).click();
   await page.waitForTimeout(1000);
 
   console.log('🔍 Tes fitur Search...');
@@ -57,20 +57,20 @@ test('CRUD Bahasa Pengantar', async ({ page }) => {
   await page.waitForLoadState('networkidle');
   await page.getByRole('row', { name: 'JPN ' }).locator('#dropdownMenuButton').click();
   await page.getByRole('link', { name: 'Edit' }).click();
-  await page.getByRole('textbox', { name: 'Nama *' }).fill('JPN LOH');
-  await page.getByRole('dialog', { name: /Edit Bahasa Pengantar|Edit Section/ }).locator('input[type="submit"]').click();
+  await page.getByRole('textbox', { name: /Nama|Name/ }).fill('JPN');
+  await page.getByRole('dialog', { value: /Simpan|Save/ }).locator('input[type="submit"]').click();
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(1000);
 
   console.log('🔄 Mengembalikan nama Bahasa Pengantar ke semula...');
-  await page.getByRole('row', { name: 'JPN LOH ' }).locator('#dropdownMenuButton').click();
+  await page.getByRole('row', { name: 'JPN' }).locator('#dropdownMenuButton').click();
   await page.getByRole('link', { name: /Hapus|Delete/, exact: true }).click();
   await page.getByRole('button', { name: /Yes, delete it|Ya, hapus/ }).click();
   await page.waitForLoadState('networkidle');
 
   console.log('🧹 Menghapus Bahasa Pengantar secara permanen...');
   await page.getByRole('link', { name: /Dihapus|Trashed/ }).click();
-  await page.getByRole('row', { name: 'JPN LOH ' }).locator('#dropdownMenuButton').click();
+  await page.getByRole('row', { name: 'JPN' }).locator('#dropdownMenuButton').click();
   await page.getByRole('link', { name: /Hapus Permanen|Delete Permanent/ }).click();
   await page.getByRole('button', { name: /Ya, Hapus Secara Permanen!|Yes, Delete Permanently!/ }).click();
   await page.waitForLoadState('networkidle');
@@ -82,8 +82,4 @@ test('CRUD Bahasa Pengantar', async ({ page }) => {
   await page.waitForLoadState('networkidle');
 
   console.log('✅ Selesai tanpa error!');
-
-
-  
-  
 });
