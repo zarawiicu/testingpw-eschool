@@ -1,37 +1,22 @@
 import { test, expect } from '@playwright/test';
 
-test('Login guru dan simpan session', async ({ page }) => {
-  // Buka halaman login
+test('tes - Login Guru', async ({ page }) => {
+  //Login dengan email dan password
   await page.goto('https://esbeta.deanry.my.id/');
-  await page.waitForLoadState('networkidle');
-
-  // Klik tombol Login
   await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+  await page.getByRole('button', { name: 'Masuk' }).click();
 
-  // Tunggu form login muncul
-  await page.waitForSelector('form[id="frmLogin"]');
+  // Pilih Sekolah
+  locator('#schoolsList div').filter({ hasText: 'SMKN 8 MALANG Alamat: Jl.' }).first().click();
+  await page.getByRole('button', { name: 'Lanjutkan ke Login' }).click();
 
-  // Isi form login
-  await page.fill('input[name="email"]', 'agungcahyono533@gmail.com');
-  await page.fill('input[name="password"]', '081230093978');
-  await page.fill('input[name="code"]', 'SCH20248');
-
-  // Klik tombol Masuk
-  await page.click('button[type="submit"]');
-
-  // Pastikan sudah login ke dashboard
+  await page.waitForURL('**/dashboard');
   await expect(page).toHaveURL(/.*dashboard/);
-  // await page.locator('text=Dashboard').waitFor();
 
-  // Ambil screenshot setelah login sukses (opsional)
-  await page.screenshot({ path: 'login-success.png' });
-
-  // ✅ Simpan session saat user masih login
+  // Simpan ke GuruState.json
   await page.context().storageState({ path: 'guruState.json' });
   console.log('✅ Session guru berhasil disimpan ke guruState.json');
-
-  // Baru logout
-  await page.getByRole('link', { name: 'image Agung Cahyono,' }).click();
-  await page.locator('text=keluar').click();
-  
 });

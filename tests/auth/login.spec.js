@@ -3,202 +3,115 @@ import { test, expect } from '@playwright/test';
 test.describe.configure({ mode: 'serial' }); // Jika ingin test berurutan (opsional)
   test.describe('Coba Login', () => {
     test('Login - Benar Semua', async ({ page }) => {
-      await page.goto('https://esbeta.deanry.my.id/login');
+        //Login dengan email dan password
+      await page.goto('https://esbeta.deanry.my.id/');
       await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('081230093978');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH20248');
+      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      await page.getByRole('link', { name: 'image Agung Cahyono,' }).click();
-      await page.getByRole('link', { name: ' Keluar' }).click();
+
+      // Pilih Sekolah
+      locator('#schoolsList div').filter({ hasText: 'SMKN 8 MALANG Alamat: Jl.' }).first().click();
+      await page.getByRole('button', { name: 'Lanjutkan ke Login' }).click();
+
+      await page.waitForURL('**/dashboard');
+      await expect(page).toHaveURL(/.*dashboard/);
     });
 
     // ERROR TEST CASE
     test('Login - Email Salah', async ({ page }) => {
       await page.goto('https://esbeta.deanry.my.id/login');
-      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Email' }).click();
-      await page.getByRole('textbox', { name: 'Email' }).press('ArrowLeft');
-      await page.getByRole('textbox', { name: 'Email' }).press('ArrowLeft');
-      await page.getByRole('textbox', { name: 'Email' }).press('ArrowLeft');
-      await page.getByRole('textbox', { name: 'Email' }).press('ArrowLeft');
-      await page.getByRole('textbox', { name: 'Email' }).press('ArrowLeft');
-      await page.getByRole('textbox', { name: 'Email' }).press('ArrowLeft');
-      await page.getByRole('textbox', { name: 'Email' }).press('ArrowRight');
-      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono50@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('081230093978');
-      await page.getByRole('textbox', { name: 'Password' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH20248');
+      await page.getByRole('textbox', { name: 'Email' }).fill('agengcahyono533gmail.com');
+      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      const errorMessage = await page.locator('text=Email or password is incorrect'); // HARUSNYA PAKAI BAHASA INDONESIA AJA
-      await expect(errorMessage).toBeVisible();
     });
 
     test('Login - Password Salah', async ({ page }) => {
       await page.goto('https://esbeta.deanry.my.id/login');
       await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('12345678');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH20248');
+      await page.getByRole('textbox', { name: 'Password' }).fill('12345');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      const errorMessage = await page.locator('text=Email or password is incorrect'); // HARUSNYA PAKAI BAHASA INDONESIA AJA
-      await expect(errorMessage).toBeVisible();
     });
 
-    test('Login - Kode Sekolah Salah', async ({ page }) => {
-      await page.goto('https://esbeta.deanry.my.id/login');
-      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('081230093978');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SC');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SC1002');
+    test('Login - dengan email dan password salah', async ({ page }) => {
+      await page.goto('http://esbeta.deanry.my.id/login');
+      await page.getByRole('textbox', { name: 'Email' }).fill('agengcahyono533gmail.com');
+      await page.getByRole('textbox', { name: 'Password' }).fill('12345');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      const errorMessage = await page.locator('text=Invalid School Identifier.'); // HARUSNYA PAKAI BAHASA INDONESIA AJA
-      await expect(errorMessage).toBeVisible();
     });
 
     test('Login - dengan satu email kosong', async ({ page }) => {
       await page.goto('https://esbeta.deanry.my.id/login');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('081230093978');
-      await page.getByRole('textbox', { name: 'Password' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH20248');
+      await page.getByRole('textbox', { name: 'Email' }).fill('');
+      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      await page.getByRole('textbox', { name: 'Email This field is required.' }).press('ControlOrMeta+V');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('');
-      await page.goto('http://esbeta.deanry.my.id/login');
     });
 
     test('Login - dengan password kosong', async ({ page }) => {
       await page.goto('https://esbeta.deanry.my.id/login');
-      await page.getByRole('textbox', { name: 'Email' }).press('ControlOrMeta+V');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH20248');
+      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
+      await page.getByRole('textbox', { name: 'Password' }).fill('');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      await page.getByRole('textbox', { name: 'Password This field is required' }).fill('081230093978');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.goto('http://esbeta.deanry.my.id/login');
     });
 
-    test('Login - dengan kode sekolah kosong', async ({ page }) => {
-      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('081230093978');
-      await page.getByRole('button', { name: 'Masuk' }).click();
-      const errorMessage = await page.locator('text=The code field is required.'); // HARUSNYA PAKAI BAHASA INDONESIA AJA
-      await expect(errorMessage).toBeVisible();
-    });
 
     test('Login - Semua Field kosong', async ({ page }) => {
       await page.goto('http://esbeta.deanry.my.id/login');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      await page.getByRole('textbox', { name: 'Email This field is required.' }).press('ControlOrMeta+V');
-      await page.getByRole('textbox', { name: 'Password This field is required' }).fill('081230093978');
-      const errorMessage = await page.locator('text=The code field is required.'); // HARUSNYA PAKAI BAHASA INDONESIA AJA
-      await expect(errorMessage).toBeVisible();
+    });
+      
+    test('Email tidak valid', async ({ page }) => {
       await page.goto('http://esbeta.deanry.my.id/login');
+      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533gmail.com');
+      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('button', { name: 'Masuk' }).click();
     });
     
-    test('Login - dengan password dan kode sekolah salah', async ({ page }) => {
+    test('Login - Cek batasan min panjang tiap field inputan', async ({ page }) => {
+      // TIDAK TERBATAS
       await page.goto('http://esbeta.deanry.my.id/login');
-      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('12345678');
-      await page.getByRole('textbox', { name: 'Password' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SC');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SC202503');
-      const errorMessage = await page.locator('text=Invalid School Identifier.'); // HARUSNYA PAKAI BAHASA INDONESIA AJA
-      await expect(errorMessage).toBeVisible();
-    }); 
-      
-    test('Login - dengan email dan password salah', async ({ page }) => {
-      await page.goto('http://esbeta.deanry.my.id/login');
+      await page.getByRole('textbox', { name: 'Email' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer non nunc at metus bibendum blandit. Proin ut purus nec sapien egestas aliquam. Sed at tristique risus, nec laoreet orci. Etiam sollicitudin ipsum at purus tincidunt, non porttitor nulla ullamcorper. Donec tincidunt felis vel augue dignissim, id rhoncus risus convallis. Suspendisse potenti. In rutrum libero ac lacus blandit, et luctus nulla ullamcorper. Maecenas non diam sit amet turpis commodo tristique. Praesent id ante ac sem fermentum viverra. Fusce ac tellus vitae libero fermentum feugiat');
+      await page.getByRole('textbox', { name: 'Password' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer non nunc at metus bibendum blandit. Proin ut purus nec sapien egestas aliquam. Sed at tristique risus, nec laoreet orci. Etiam sollicitudin ipsum at purus tincidunt, non porttitor nulla ullamcorper. Donec tincidunt felis vel augue dignissim, id rhoncus risus convallis. Suspendisse potenti. In rutrum libero ac lacus blandit, et luctus nulla ullamcorper. Maecenas non diam sit amet turpis commodo tristique. Praesent id ante ac sem fermentum viverra. Fusce ac tellus vitae libero fermentum feugiat');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      await page.getByRole('textbox', { name: 'Email' }).fill('agungwijaya533@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('12345678');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SCH20248');
-      await page.getByRole('button', { name: 'Masuk' }).click();
-      const errorMessage = await page.locator('text=Email or password is incorrect'); // HARUSNYA PAKAI BAHASA INDONESIA AJA
-      await expect(errorMessage).toBeVisible();
-    });
-      
-    test('Login - dengan email, password, dan kode sekolah salah', async ({ page }) => {
+    });  
+
+    test('Login - Cek batasan max panjang tiap field inputan', async ({ page }) => {
+      // TIDAK TERBATAS
       await page.goto('http://esbeta.deanry.my.id/login');
-      await page.getByRole('textbox', { name: 'Email' }).fill('agungaja@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('123456789');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SC');
-      await page.getByRole('textbox', { name: 'School Code' }).press('CapsLock');
-      await page.getByRole('textbox', { name: 'School Code' }).fill('SC200311');
+      await page.getByRole('textbox', { name: 'Email' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer non nunc at metus bibendum blandit. Proin ut purus nec sapien egestas aliquam. Sed at tristique risus, nec laoreet orci. Etiam sollicitudin ipsum at purus tincidunt, non porttitor nulla ullamcorper. Donec tincidunt felis vel augue dignissim, id rhoncus risus convallis. Suspendisse potenti. In rutrum libero ac lacus blandit, et luctus nulla ullamcorper. Maecenas non diam sit amet turpis commodo tristique. Praesent id ante ac sem fermentum viverra. Fusce ac tellus vitae libero fermentum feugiat');
+      await page.getByRole('textbox', { name: 'Password' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer non nunc at metus bibendum blandit. Proin ut purus nec sapien egestas aliquam. Sed at tristique risus, nec laoreet orci. Etiam sollicitudin ipsum at purus tincidunt, non porttitor nulla ullamcorper. Donec tincidunt felis vel augue dignissim, id rhoncus risus convallis. Suspendisse potenti. In rutrum libero ac lacus blandit, et luctus nulla ullamcorper. Maecenas non diam sit amet turpis commodo tristique. Praesent id ante ac sem fermentum viverra. Fusce ac tellus vitae libero fermentum feugiat');
       await page.getByRole('button', { name: 'Masuk' }).click();
-      const errorMessage = await page.locator('text=Invalid School Identifier.'); // HARUSNYA PAKAI BAHASA INDONESIA AJA
-      await expect(errorMessage).toBeVisible();
-    });
-      
-    test('Login - Cek batasan panjang tiap field inputan', async ({ page }) => {
-      await page.goto('http://esbeta.deanry.my.id/login');
-      await page.getByRole('textbox', { name: 'Email' }).click();
-      await page.getByRole('textbox', { name: 'Email' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.');
-      await page.getByRole('textbox', { name: 'Email' }).click();
-      await page.getByRole('textbox', { name: 'Email' }).fill('Lorem ipsum dolor sit amet, cLorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.onsectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.');
-      await page.getByRole('textbox', { name: 'Email' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum. ');
-      await page.getByRole('textbox', { name: 'Email' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.4Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.5Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.6Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.7Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.8');
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('Lorem ipsum dolor sit amet, conse1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.ctetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.');
-      await page.getByRole('textbox', { name: 'Password' }).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.');
-      await page.locator('#togglePasswordShowHide span').click();
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('Lorem ipsum dolor sit amet1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.4Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.5Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.6Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.7Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.8, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.');
-      await page.getByRole('textbox', { name: 'School Code' }).click();
-      await page.getByRole('textbox', { name: 'School Code' }).fill('Lorem ipsum dolor sit amet, c1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.4Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.5Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.6Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.7Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.8onsectetur adipiscing elit. Curabitur vitae dolor non neque suscipit scelerisque. Vivamus viverra, neque in aliquam elementum, est metus vehicula urna, ac fermentum mi justo sit amet odio. Integer lobortis, arcu ut dictum.');
     });  
       
-    test('Login - cek tombol login apakah disable saat form kosong', async ({ page }) => {
-      await page.goto('http://esbeta.deanry.my.id/login');
-      await page.getByRole('button', { name: 'Masuk' }).click(); // TIDAK DISABLE SAAT FORM KOSONG
+    test('Pilih Sekolah - Tidak memilih sekolah', async ({ page }) => {
+      //Tidak memilh sekolah
+      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
+      await page.getByRole('textbox', { name: 'Password' }).click();
+      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('button', { name: 'Masuk' }).click();
+
+      //Cari nama sekolah
+      await page.getByRole('textbox', { name: 'Cari nama sekolah...' }).fill('SMKN 8');
+      await page.locator('#selectSchoolForm div').filter({ hasText: 'Lanjutkan ke Login' }).nth(1).click(); //Tombol disable saat tidak memilih sekolah
     });
 
-    test('Login - CTA Lupa Password', async ({ page }) => {
+    test('Login - CTA', async ({ page }) => {
       await page.goto('http://esbeta.deanry.my.id/login');
-      await page.getByRole('button', { name: 'Masuk' }).click();
-      await page.locator('.row').first().click();
+
+      //CTA Lupa Password
       await page.getByRole('link', { name: 'Lupa Password?' }).click();
-      await page.goto('http://esbeta.deanry.my.id/login');
+
+      //CTA Belum punya akun
+      await page.getByRole('link', { name: 'Belum punya akun? Daftar' }).click();
+      await page.getByRole('button', { name: 'Close' }).click();
+
+      await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
+      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('button', { name: 'Masuk' }).click();
+
+      //CTA ekolah tidak ada, hubungi admin
+      await page.getByRole('link', { name: 'Sekolah tidak ada dalam' }).click();
     });
+
 
     test('Login - Show/Hide Password', async ({ page }) => {
       await page.goto('http://esbeta.deanry.my.id/login');

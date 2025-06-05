@@ -193,42 +193,133 @@ test.describe("Mapel saya & CRUDS Penugasan", () => {
 
   //TEST CASE ERROR
   test('Penugasan - Submit form kosong', async ({ page }) => {
-    await page.goto('');
+    await page.goto('https://esbeta.deanry.my.id/mylesson');
+    await page.getByRole('link', { name: ' Mapel saya' }).click();
+    await page.locator('div:nth-child(2) > .card > .card-body > .btn').click();
+    await page.getByRole('button', { name: 'Tambah Penugasan' }).click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).click();
+    await page.getByRole('button', { name: 'Simpan' }).click();
   });
 
   test('Penugasan - Tgl Jatuh tempo lebih awal dari tgl mulai', async ({ page }) => {
-    await page.goto('');
-  
-    await expect(page).toHaveURL('');
+    await page.goto('https://esbeta.deanry.my.id/mylesson');
+    await page.getByRole('link', { name: ' Mapel saya' }).click();
+    await page.locator('div:nth-child(2) > .card > .card-body > .btn').click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Kelas Kelompok Belajar *').selectOption('35');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Mata Pelajaran *').selectOption('141');
+    await page.getByRole('textbox', { name: 'Nama Tugas * This field is' }).fill('Buat poster');
+    await page.getByRole('textbox', { name: 'Instruksi Penugasan' }).fill('Buat poster dengan tema pola makan 4 sehat 5 sempurna');
+    await page.getByRole('textbox', { name: 'Jatuh tempo * This field is' }).fill('2025-05-02T08:00');
+    await page.getByRole('textbox', { name: 'Mulai*' }).fill('2025-05-05T08:00');
+    await page.getByRole('textbox', { name: 'Akhir*' }).fill('2025-05-10T12:00');
+    await page.getByRole('spinbutton', { name: 'Poin' }).fill('100');
+    await page.getByRole('spinbutton', { name: 'Nilai Kelulusan' }).fill('85');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Ukuran Maksimum File').selectOption('50');
+    await page.getByRole('checkbox', { name: 'docx' }).check();
+    await page.getByRole('checkbox', { name: 'pdf' }).check();
+    await page.getByRole('button', { name: 'Simpan' }).click();
   });
 
   test('Penugasan - Tgl Jatuh tempo lebih awal dari tgl akhir', async ({ page }) => {
-    await page.goto('');
-  
-    await expect(page).toHaveURL('');
+    await page.goto('https://esbeta.deanry.my.id/mylesson');
+    await page.getByRole('link', { name: ' Mapel saya' }).click();
+    await page.locator('div:nth-child(2) > .card > .card-body > .btn').click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Kelas Kelompok Belajar *').selectOption('35');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Mata Pelajaran *').selectOption('141');
+    await page.getByRole('textbox', { name: 'Nama Tugas * This field is' }).fill('Rangkuman');
+    await page.getByRole('textbox', { name: 'Instruksi Penugasan' }).fill('Rangkumlah bab pola hidup sehat');
+    await page.getByRole('textbox', { name: 'Jatuh tempo * This field is' }).fill('2025-05-13T08:00');
+    await page.getByRole('textbox', { name: 'Mulai*' }).fill('2025-05-03T08:00');
+    await page.getByRole('textbox', { name: 'Akhir*' }).fill('2025-05-10T12:00');
+    await page.getByRole('spinbutton', { name: 'Poin' }).fill('100');
+    await page.getByRole('spinbutton', { name: 'Nilai Kelulusan' }).fill('85');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Ukuran Maksimum File').selectOption('50');
+    await page.getByRole('checkbox', { name: 'docx' }).check();
+    await page.getByRole('checkbox', { name: 'pdf' }).check();
+    await page.getByRole('button', { name: 'Simpan' }).click();
   });
 
-  test('Penugasan - Isi nilai kelulusan diatas pon maks', async ({ page }) => {
-    await page.goto('');
-  
-    await expect(page).toHaveURL('');
+  test('Penugasan - Isi nilai kelulusan diatas poin maks', async ({ page }) => {
+    await page.goto('https://esbeta.deanry.my.id/mylesson');
+    await page.getByRole('link', { name: ' Mapel saya' }).click();
+    await page.locator('div:nth-child(2) > .card > .card-body > .btn').click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Kelas Kelompok Belajar *').selectOption('35');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Mata Pelajaran *').selectOption('141');
+    await page.getByRole('textbox', { name: 'Nama Tugas * This field is' }).fill('Rangkuman');
+    await page.getByRole('textbox', { name: 'Instruksi Penugasan' }).fill('Rangkumlah bab senam irama');
+    await page.getByRole('textbox', { name: 'Jatuh tempo * This field is' }).fill('2025-05-10T08:00');
+    await page.getByRole('textbox', { name: 'Mulai*' }).fill('2025-05-01T08:00');
+    await page.getByRole('textbox', { name: 'Akhir*' }).fill('2025-05-12T12:00');
+    await page.getByRole('spinbutton', { name: 'Poin' }).fill('80');
+    await page.getByRole('spinbutton', { name: 'Nilai Kelulusan' }).fill('85');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Ukuran Maksimum File').selectOption('50');
+    await page.getByRole('checkbox', { name: 'docx' }).check();
+    await page.getByRole('checkbox', { name: 'pdf' }).check();
+    await page.getByRole('button', { name: 'Simpan' }).click();
   });
 
   test('Penugasan - input terlalu pendek', async ({ page }) => {
-    await page.goto('');
-  
-    await expect(page).toHaveURL('');
+    await page.goto('https://esbeta.deanry.my.id/mylesson');
+    await page.getByRole('link', { name: ' Mapel saya' }).click();
+    await page.locator('div:nth-child(2) > .card > .card-body > .btn').click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Kelas Kelompok Belajar *').selectOption('35');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Mata Pelajaran *').selectOption('141');
+    await page.getByRole('textbox', { name: 'Nama Tugas * This field is' }).fill('R');
+    await page.getByRole('textbox', { name: 'Instruksi Penugasan' }).fill('F');
+    await page.getByRole('textbox', { name: 'Jatuh tempo * This field is' }).fill('2025-05-12T08:00');
+    await page.getByRole('textbox', { name: 'Mulai*' }).fill('2025-05-05T08:00');
+    await page.getByRole('textbox', { name: 'Akhir*' }).fill('2025-05-15T12:00');
+    await page.getByRole('spinbutton', { name: 'Poin' }).fill('100');
+    await page.getByRole('spinbutton', { name: 'Nilai Kelulusan' }).fill('85');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Ukuran Maksimum File').selectOption('50');
+    await page.getByRole('checkbox', { name: 'docx' }).check();
+    await page.getByRole('checkbox', { name: 'pdf' }).check();
+    await page.getByRole('button', { name: 'Simpan' }).click();
   });
 
   test('Penugasan - Upload file engan ekstensi yg tdk didukung', async ({ page }) => {
-    await page.goto('');
-  
-    await expect(page).toHaveURL('');
+    await page.goto('https://esbeta.deanry.my.id/mylesson');
+    await page.getByRole('link', { name: ' Mapel saya' }).click();
+    await page.locator('div:nth-child(2) > .card > .card-body > .btn').click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Kelas Kelompok Belajar *').selectOption('35');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Mata Pelajaran *').selectOption('141');
+    await page.getByRole('textbox', { name: 'Nama Tugas * This field is' }).fill('Rangkuman');
+    await page.getByRole('textbox', { name: 'Instruksi Penugasan' }).fill('Rangkumlah bab renang');
+    await page.getByRole('textbox', { name: 'Jatuh tempo * This field is' }).fill('2025-05-15T08:00');
+    await page.getByRole('textbox', { name: 'Mulai*' }).fill('2025-05-08T08:00');
+    await page.getByRole('textbox', { name: 'Akhir*' }).fill('2025-05-18T12:00');
+    await page.getByRole('spinbutton', { name: 'Poin' }).fill('100');
+    await page.getByRole('spinbutton', { name: 'Nilai Kelulusan' }).fill('85');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Ukuran Maksimum File').selectOption('512');
+    await page.getByRole('button', { name: 'Choose File' }).setInputFiles('ScreenRec_webinstall_all.exe');
+    await page.getByRole('checkbox', { name: 'docx' }).check();
+    await page.getByRole('checkbox', { name: 'pdf' }).check();
+    await page.getByRole('button', { name: 'Simpan' }).click();
   });
 
   test('Penugasan - Upload file melebihi batas', async ({ page }) => {
-    await page.goto('');
-  
-    await expect(page).toHaveURL('');
+    await page.goto('https://esbeta.deanry.my.id/mylesson');
+    await page.getByRole('link', { name: ' Mapel saya' }).click();
+    await page.locator('div:nth-child(2) > .card > .card-body > .btn').click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).click();
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Kelas Kelompok Belajar *').selectOption('35');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Mata Pelajaran *').selectOption('141');
+    await page.getByRole('textbox', { name: 'Nama Tugas * This field is' }).fill('Rangkuman');
+    await page.getByRole('textbox', { name: 'Instruksi Penugasan' }).fill('Rangkumlah bab senam irama');
+    await page.getByRole('textbox', { name: 'Jatuh tempo * This field is' }).fill('2025-05-17T08:00');
+    await page.getByRole('textbox', { name: 'Mulai*' }).fill('2025-05-11T08:00');
+    await page.getByRole('textbox', { name: 'Akhir*' }).fill('2025-05-20T12:00');
+    await page.getByRole('spinbutton', { name: 'Poin' }).fill('100');
+    await page.getByRole('spinbutton', { name: 'Nilai Kelulusan' }).fill('85');
+    await page.getByRole('dialog', { name: 'Tambah Penugasan' }).getByLabel('Ukuran Maksimum File').selectOption('512');
+    await page.getByRole('button', { name: 'Choose File' }).setInputFiles('Playwright Foundations with C#.rar');
+    await page.getByRole('checkbox', { name: 'docx' }).check();
+    await page.getByRole('checkbox', { name: 'pdf' }).check();
+    await page.getByRole('button', { name: 'Simpan' }).click();
   });
 });

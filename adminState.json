@@ -2,20 +2,20 @@
   "cookies": [
     {
       "name": "XSRF-TOKEN",
-      "value": "eyJpdiI6IkRHbGM0b0dyRUorZGs0c2ZNNXpNR1E9PSIsInZhbHVlIjoiZHZYQmlqTFRlenlFbzhaanM1K0xERE9waHhTQzdmZ0llMlV5WCt1anVVWjVWQlNjZ2pDNDNUYjBmY0xjU3F1VVVBeXB5M085YzF4c202clJ5QUd2WDAvZFROalAxTThmS2hIa01hUU5td1ptMWk1ZStPcFBlR1B2cms1enpHZVoiLCJtYWMiOiIyZDVhYzA2ZGYxOTFkYjYwYTZjYjRjMTZjYWVhNDZmMDZkYzM3OTE2MGFhYjYwZTVkMDQxOTUxYWEwMTU3YjNmIiwidGFnIjoiIn0%3D",
+      "value": "eyJpdiI6IjlnYzdYZ1M3L1RSVVNJK3hZbDJBMmc9PSIsInZhbHVlIjoiOVdWTDJHNVF5MFhoRDJqVldCRnpWbjVwZStlRFZ4RW1HVnhCdGVvN0JoQUhwYVJnSVRsb2lBZ0Z5eCtNMVRNb09Wd0lvTmpwakxhbDlBTHlETWJKWk5kMm1BZDQxTGxMK1luNkkxclZqcWhoamVRalVGcFlHbHBpZlEzMnFzVFQiLCJtYWMiOiI3YTY4MTFhNDAyMjY1MTFjZjRhMWEyMjdiNmFlNzY2N2ZjMWRjNjNkYzUyNTMzNzhlOTkzYjVhOWI2ZmIzZDg5IiwidGFnIjoiIn0%3D",
       "domain": "esbeta.deanry.my.id",
       "path": "/",
-      "expires": 1745487836.726859,
+      "expires": 1749096218.470563,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "eschool_software_manajemen_sekolah_session",
-      "value": "eyJpdiI6IjZGeGlnZVdKVHZUV0VhQ20rang0eVE9PSIsInZhbHVlIjoic3BFdWQwa0tmZ1pSWHVPYU5yQUtZVk4vSmtTUm40MFRMWm1OOG1QaEpkR2d3dU1IMndKc05CMWtlMmQrc0liekNFYWVTcThyZ2NJbzVVUzZLVVB0NkNZV0pXeVBkTDlGWWNQM1NLYW85dGRUcU5GY3BSeTBxdFNLMWt4MHovUk0iLCJtYWMiOiJmNGIyNmEwZTc3NjkwZTI2ZjFlODRjZTY4ZTkwMTMwYWJlYWNhODc5ZjI2MDQ2MWY2NDgyMTExNmI0M2E5YmM1IiwidGFnIjoiIn0%3D",
+      "value": "eyJpdiI6IjNCTzRZMkx2SklmYUdaY21BemtoZGc9PSIsInZhbHVlIjoiYUpQS21qSHJBejNHdzM0OCtLMk56N25sc3J3dUREUWxvaHYrVkpKdGdhWDRENmZIT3RIUHNTR241dlNwbkxIUHJtV0V5QXBiWk83SW9XeGJmN1kwK2ZvcVdERkVDb2l5dUF0T1pqQVdwVUhmRzFiQ1RMNE1BRDFtdlV4R3lVQlQiLCJtYWMiOiIzNjhiYzRkOTQxYjhkMDY5NGZjNjM5NzliMWRlMzliODYwMDk3MWVlYWI5MDZiYzY3YWNhYjAzZTgyYzU4MGFmIiwidGFnIjoiIn0%3D",
       "domain": "esbeta.deanry.my.id",
       "path": "/",
-      "expires": 1745487836.726947,
+      "expires": 1749096218.470716,
       "httpOnly": true,
       "secure": false,
       "sameSite": "Lax"
@@ -31,7 +31,7 @@
         },
         {
           "name": "rzp_checkout_anon_id",
-          "value": "ae9443eed6cc4dbe9035b2d662dd31d5"
+          "value": "411be196d88444cca1b2da337789b98f"
         }
       ]
     },
