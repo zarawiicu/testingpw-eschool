@@ -85,7 +85,7 @@ console.log('🔄 Membuka halaman login...');
   await page.waitForTimeout(1000);
   await page.getByRole('row', { name: 'Testyaa ' }).locator('#dropdownMenuButton').click();
   await page.getByRole('link', { name: /Hapus Permanen|Delete Permanent/ }).click();
-  await page.getByRole('button', { name: /Ya, hapus|Yes, delete it/ }).click();
+  await page.getByRole('button', { name: /Ya, Hapus Secara Permanen!|Yes, Delete Permanently!/ }).click();
 
   console.log('✅ Proses selesai!');
 });
