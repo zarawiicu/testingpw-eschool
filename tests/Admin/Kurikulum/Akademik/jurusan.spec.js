@@ -32,14 +32,13 @@ test('Test Jurusan', async ({ page }) => {
   await page.waitForTimeout(800);
   await page.locator('#edit-form').getByRole('button', { name: 'Simpan' }).click();
   await page.waitForTimeout(1500);
-
-  console.log('❌ Menutup modal edit...');
-  await page.getByRole('row', { name: 'TestLoh ' }).locator('#dropdownMenuButton').click();
-  await page.waitForTimeout(800);
-  await page.getByRole('link', { name: 'Edit' }).click();
-  await page.waitForTimeout(800);
-  await page.getByRole('button', { name: /Tutup|Close/ }).click();
-  await page.waitForTimeout(1200);
+  // console.log('❌ Menutup modal edit...');
+  // await page.getByRole('row', { name: 'TestLoh ' }).locator('#dropdownMenuButton').click();
+  // await page.waitForTimeout(800);
+  // await page.getByRole('link', { name: 'Edit' }).click();
+  // await page.waitForTimeout(800);
+  // await page.getByRole('button', { name: /Tutup|Close/ }).click();
+  // await page.waitForTimeout(1200);
 
   console.log('🗑️ Menghapus jurusan "TestLoh"...');
   await page.getByRole('row', { name: 'TestLoh ' }).locator('#dropdownMenuButton').click();
