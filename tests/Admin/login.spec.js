@@ -10,7 +10,7 @@ test('Login sebagai admin dan simpan sesi', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Email' }).fill('adminsmk8malang@gmail.com');
   
   // Isi password
-  await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+  await page.getByRole('textbox', { name: 'Password' }).fill('smkn8*()');
 
   // Tekan Enter atau klik tombol Masuk
   await page.getByRole('button', { name: 'Masuk' }).click();

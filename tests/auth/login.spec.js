@@ -6,12 +6,12 @@ test.describe.configure({ mode: 'serial' }); // Jika ingin test berurutan (opsio
         //Login dengan email dan password
       await page.goto('https://esbeta.deanry.my.id/');
       await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('textbox', { name: 'Password' }).fill('smkn8*()');
       await page.getByRole('button', { name: 'Masuk' }).click();
 
       // Pilih Sekolah
-      locator('#schoolsList div').filter({ hasText: 'SMKN 8 MALANG Alamat: Jl.' }).first().click();
-      await page.getByRole('button', { name: 'Lanjutkan ke Login' }).click();
+      await page.locator('#schoolsList i').nth(1).click();
+      await page.getByRole('button', { name: 'Lanjutkan ke Dashboard' }).click();
 
       await page.waitForURL('**/dashboard');
       await expect(page).toHaveURL(/.*dashboard/);
@@ -21,7 +21,7 @@ test.describe.configure({ mode: 'serial' }); // Jika ingin test berurutan (opsio
     test('Login - Email Salah', async ({ page }) => {
       await page.goto('https://esbeta.deanry.my.id/login');
       await page.getByRole('textbox', { name: 'Email' }).fill('agengcahyono533gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('textbox', { name: 'Password' }).fill('smkn8*()');
       await page.getByRole('button', { name: 'Masuk' }).click();
     });
 
@@ -42,7 +42,7 @@ test.describe.configure({ mode: 'serial' }); // Jika ingin test berurutan (opsio
     test('Login - dengan satu email kosong', async ({ page }) => {
       await page.goto('https://esbeta.deanry.my.id/login');
       await page.getByRole('textbox', { name: 'Email' }).fill('');
-      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('textbox', { name: 'Password' }).fill('smkn8*()');
       await page.getByRole('button', { name: 'Masuk' }).click();
     });
 
@@ -62,7 +62,7 @@ test.describe.configure({ mode: 'serial' }); // Jika ingin test berurutan (opsio
     test('Email tidak valid', async ({ page }) => {
       await page.goto('http://esbeta.deanry.my.id/login');
       await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('textbox', { name: 'Password' }).fill('smkn8*()');
       await page.getByRole('button', { name: 'Masuk' }).click();
     });
     
@@ -86,12 +86,12 @@ test.describe.configure({ mode: 'serial' }); // Jika ingin test berurutan (opsio
       //Tidak memilh sekolah
       await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
       await page.getByRole('textbox', { name: 'Password' }).click();
-      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('textbox', { name: 'Password' }).fill('smkn8*()');
       await page.getByRole('button', { name: 'Masuk' }).click();
 
       //Cari nama sekolah
       await page.getByRole('textbox', { name: 'Cari nama sekolah...' }).fill('SMKN 8');
-      await page.locator('#selectSchoolForm div').filter({ hasText: 'Lanjutkan ke Login' }).nth(1).click(); //Tombol disable saat tidak memilih sekolah
+      await page.getByRole('button', { name: 'Lanjutkan ke Dashboard' }).click(); //Tombol disable saat tidak memilih sekolah
     });
 
     test('Login - CTA', async ({ page }) => {
@@ -105,7 +105,7 @@ test.describe.configure({ mode: 'serial' }); // Jika ingin test berurutan (opsio
       await page.getByRole('button', { name: 'Close' }).click();
 
       await page.getByRole('textbox', { name: 'Email' }).fill('agungcahyono533@gmail.com');
-      await page.getByRole('textbox', { name: 'Password' }).fill('hacked');
+      await page.getByRole('textbox', { name: 'Password' }).fill('smkn8*()');
       await page.getByRole('button', { name: 'Masuk' }).click();
 
       //CTA ekolah tidak ada, hubungi admin
